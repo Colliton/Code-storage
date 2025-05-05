@@ -1,3 +1,8 @@
+""" Heatmap for immune cells infiltrating primary tumours in a mouse model (Balb/c mice injected with GFP-labelled 4T1 cell line). 
+The study group was treated with Pyrvinium Pamoate. 
+Threshold - mice that survived a minimum of 9 days were included in the analysis.
+Standardised data - TPM."""
+
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
