@@ -8,11 +8,11 @@ Most of the files are related to projects carried out during my PhD. They relate
 
 ## 📁 Repository Structure
 
-├── Python
-│   ├── Raw_code 
-│   └── Jupyter_Notebook
+├── Python/
+│   ├── Raw_code/
+│   └── Jupyter_Notebook/
 │
-├── SQL
+├── SQL/
 │   └── OPUS_BC.sql
 │
 ├── .gitignore
