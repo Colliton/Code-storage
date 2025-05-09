@@ -8,7 +8,7 @@ Most of the files are related to projects carried out during my PhD. They relate
 
 ## 📁 Repository Structure
 
-<pre> ### 📁 Repository Structure ``` . ├── Python/ │ ├── Raw_code/ # Standalone Python scripts │ └── Jupyter_Notebook/ # Jupyter notebooks with results │ ├── SQL/ │ └── OPUS_BC.sql # SQL query for data retrieval │ ├── .gitignore # Files excluded from version control ├── requirements.txt # Python dependencies └── README.md # Project overview ``` </pre>        
+<pre> . ├── Python/ │ ├── Raw_code/ # Standalone Python scripts │ └── Jupyter_Notebook/ # Jupyter notebooks with results │ ├── SQL/ │ └── OPUS_BC.sql # SQL query for data retrieval │ ├── .gitignore # Files excluded from version control ├── requirements.txt # Python dependencies └── README.md # Project overview ``` </pre>        
 
 ---
 
