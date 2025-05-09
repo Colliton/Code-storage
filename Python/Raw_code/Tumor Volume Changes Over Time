@@ -1,6 +1,26 @@
-""" Mean tumour volume in the test and control group in mice at specific time points. 
-Vertical line marked with the start date of Pyrvinium Pamoate (PP) administration. 
-Shaded boxes next to graphs indicate standard deviations to points."""
+""" 
+Tumor Volume Dynamics in Mice with Pyrvinium Pamoate (PP) Administration
+
+Tumor volume progression over time in two groups of mice:
+a treated group receiving Pyrvinium Pamoate (PP) and a control group.
+Mean tumor volume is plotted at each time point with shaded standard deviations.
+A vertical red line marks the start of PP administration.
+
+Input:
+- Excel file (V guza dniami .xlsx) containing:
+    - Tumor volume measurements on different dates (one column per date)
+    - Group assignment ("badana" for treated, "kontrolna" for control)
+
+Output:
+- Line plot showing mean tumor volume ± standard deviation per group over time
+- Vertical dashed line indicating PP administration start date
+
+Dependencies:
+- pandas
+- seaborn
+- matplotlib
+
+"""
 
 # Import required libraries
 import pandas as pd
