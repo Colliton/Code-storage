@@ -1,3 +1,8 @@
+""" Mean tumour volume in the test and control group in mice at specific time points. 
+Vertical line marked with the start date of Pyrvinium Pamoate (PP) administration. 
+Shaded boxes next to graphs indicate standard deviations to points."""
+
+# Import required libraries
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
