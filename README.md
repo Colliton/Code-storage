@@ -8,13 +8,17 @@ Most of the files are related to projects carried out during my PhD. They relate
 
 ## 📁 Repository Structure
 
-Python/
-├── Raw_code/ # Standalone Python scripts
-├── Jupyter_Notebook/ # Notebooks with visualized results
-
-SQL/
-└── OPUS_BC.sql # SQL queries used for data analysis
-
+.
+├── Python/
+│   ├── Raw_code/           # Standalone Python scripts for data processing or plotting
+│   └── Jupyter_Notebook/   # Jupyter notebooks with visualized results and exploratory analysis
+│
+├── SQL/
+│   └── OPUS_BC.sql         # SQL queries used for database extraction and preprocessing
+│
+├── .gitignore              # Files and folders excluded from version control
+├── requirements.txt        # Python dependencies
+└── README.md               # Project overview and documentation
 
 ---
 
