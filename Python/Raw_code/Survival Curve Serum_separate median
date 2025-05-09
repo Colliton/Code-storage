@@ -23,6 +23,7 @@ Dependencies:
 - scipy
 """
 
+# Import required libraries
 import pandas as pd
 import matplotlib.pyplot as plt
 from lifelines import KaplanMeierFitter
