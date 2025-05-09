@@ -24,7 +24,7 @@ Most of the files are related to projects carried out during my PhD. They relate
 
 ## 🔍 Content Overview
 
-- `Clustermap - 2 colourbars.py` & `Clustermap - 2 colorbars.ipynb` – Clustermap for immune cells infiltrating primary tumours in a mouse model.
+- `Clustermap - 2 colourbars.py` & `Clustermap - 2 colorbars.ipynb` – Heatmap/Clustermap for Immune Cell Infiltration in Tumours of Balb/c Mice Treated with Pyrvinium Pamoate.
 - `Survival Curve Serum_separate median.py` & `Survival Curve Serum_separate median.ipynb` - Survival Analysis of Mice Based on PUFA Serum Levels.
 - `Tumor Volume Changes Over Time.py` & `Tumor Volume Changes Over Time.ipynb` - Tumor Volume Dynamics in Mice with Pyrvinium Pamoate (PP) Administration.
 - `Volcano_plot_4T1.py` & `Volcano_plot_4T1.ipynb` – Volcano Plot for Differential Gene Expression in 4T1 Cells Treated with Pyrvinium Pamoate.
