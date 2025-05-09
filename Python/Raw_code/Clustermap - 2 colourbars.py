@@ -1,8 +1,30 @@
-""" Heatmap for immune cells infiltrating primary tumours in a mouse model (Balb/c mice injected with GFP-labelled 4T1 cell line). 
-The study group was treated with Pyrvinium Pamoate. 
-Threshold - mice that survived a minimum of 9 days were included in the analysis.
-Standardised data - TPM.
-Full visualisation of the code below in Jupyter Notebook file"""
+"""
+Heatmap/Clustermap for Immune Cell Infiltration in Tumours of Balb/c Mice Treated with Pyrvinium Pamoate
+
+This script generates a heatmap visualizing the abundance of immune cells in primary tumours
+of Balb/c mice injected with GFP-labelled 4T1 cells. Mice that survived a minimum of 9 days were included
+in the analysis. Data is standardised to TPM (Transcripts Per Million) and Z-score normalized for visualization.
+
+Input:
+- Excel file (ImmuCellAI_mouse_abundance_result_threshold_9.xlsx) containing:
+    - 'Group': Experimental group (Control/Treated)
+    - 'Infiltration_score': Score indicating immune cell infiltration level
+    - Immune cell types as columns
+    - 'Mouse number': Identifier for each mouse
+
+Output:
+- Z-score normalized heatmap of immune cell abundance
+- Colourbar for Z-score and Infiltration Score
+- Group legend at the bottom of the heatmap
+
+Dependencies:
+- pandas
+- seaborn
+- matplotlib
+- numpy
+- scipy
+
+""" 
 
 # Import required libraries
 import pandas as pd
