@@ -34,7 +34,7 @@ Most of the files are related to projects carried out during my PhD. They relate
 
 - Python 3.10+
 - JupyterLab
-- Libraries: `pandas`, `seaborn`, `matplotlib`
+- Libraries: `pandas`, `seaborn`, `matplotlib`, `numpy`, `lifelines`, `scipy`
 - SQL (PostgreSQL / MySQL depending on the environment)
 
 ---
