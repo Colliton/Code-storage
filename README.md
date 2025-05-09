@@ -1,4 +1,4 @@
-# 🧬 Code-storage
+## 🧬 Code-storage
 
 This folder contains **Python** code and an **SQL** file.
 Most of the files are related to projects carried out during my PhD. They relate to analyses associated with a mouse model of promiscuous breast cancer and to a substance being tested as a potential drug: Pyrvinium Pamoate. 
@@ -7,18 +7,17 @@ Most of the files are related to projects carried out during my PhD. They relate
 ---
 
 ## 📁 Repository Structure
-.
-#├── Python/
-#│   ├── Raw_code/         
-#│   └── Jupyter_Notebook/   
-#│
-#├── SQL/
-#│   └── OPUS_BC.sql       
-#│
-#├── .gitignore             
-#├── requirements.txt       
-#└── README.md              
 
+├── Python
+│   ├── Raw_code 
+│   └── Jupyter_Notebook
+│
+├── SQL
+│   └── OPUS_BC.sql
+│
+├── .gitignore
+├── requirements.txt
+└── README.md
 
 ---
 
