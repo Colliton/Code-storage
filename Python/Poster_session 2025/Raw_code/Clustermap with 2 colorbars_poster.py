@@ -6,6 +6,7 @@ This script generates a poster-ready clustermap showing Z-scored immune cell abu
 in mouse tumor samples. The data is derived from ImmuCellAI-mouse analysis. The heatmap 
 is sorted by experimental group and includes custom color annotations for group identity 
 (Control vs Treated) and infiltration score.
+Data is standardised to TPM (Transcripts Per Million).
 
 Features:
 - Heatmap rows: immune cell types
