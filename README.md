@@ -1,7 +1,7 @@
 ## 🧬 Code-storage
 
 This folder contains **Python** code and an **SQL** file.
-Most of the files are related to projects carried out during my PhD. They relate to analyses associated with a mouse model of promiscuous breast cancer and to a substance being tested as a potential drug: Pyrvinium Pamoate. 
+Most of the files are related to projects carried out during my PhD. They relate to analyses associated with a mouse model of triple negative breast cancer (TNBC) and to a substance being tested as a potential drug: Pyrvinium Pamoate. 
 > This is only a marginal part of the biostatistical analyses and visualisations that have been carried out.
 
 ---
@@ -33,6 +33,15 @@ Most of the files are related to projects carried out during my PhD. They relate
 - `Tumor Volume Changes Over Time.py` & `Tumor Volume Changes Over Time.ipynb` - Tumor Volume Dynamics in Mice with Pyrvinium Pamoate (PP) Administration.
 - `Volcano_plot_4T1.py` & `Volcano_plot_4T1.ipynb` – Volcano Plot for Differential Gene Expression in 4T1 Cells Treated with Pyrvinium Pamoate.
 - `OPUS_BC.sql` – SQL queries used to extract and preprocess data from the OPUS_BC database.
+
+**Poster_session 2025**
+- `Abscesses level_poster.py` & `Abscesses level_poster.ipynb` -
+- `Cell Type_Necrosis in PT vs Liver metastasses_abscesses_poster.py` & `Cell Type_Necrosis in PT vs Liver metastasses_abscesses_poster.ipynb` -
+- `Cell Type_Necrosis in primary tumour.py` & `Cell Type_Necrosis in primary tumour.ipynb` -
+- `Clustermap with 2 colorbars_poster.py` & `Clustermap with 2 colorbars_poster.ipynb` -
+- `Infiltration vs Cell Type_Necrosis_poster.py` & `Infiltration vs Cell Type_Necrosis_poster.ipynb` -
+- `Infiltration vs Liver metastases_abscesses_poster.py` & `Infiltration vs Liver metastases_abscesses_poster.ipynb` -
+- `Macrometastases vs Micrometastases in the liver_poster.py` & `Macrometastases vs Micrometastases in the liver_poster.ipynb` -
 
 ---
 
