@@ -2,7 +2,11 @@
 Liver Abscesses Visualization – Group Comparison
 
 This script visualizes the percentage of mice with different levels of liver abscesses across experimental groups.
-It includes two complementary visualizations:
+The analysis was performed for mice that lived to at least day 9 (≥ 9).
+Mouse 311 (healthy/no primary tumour) and 
+mice 324 and 335 (RNA from primary tumours was not sequenced due to low RIN values) were excluded from the analysis.
+
+The script includes two complementary visualizations:
 1. A four-category breakdown of abscess severity (A0–A3).
 2. A grouped comparison into two categories: "Trace or None" (A0/A1) and "Mild and Severe" (A2/A3),
    with a Chi-square test for statistical significance.
