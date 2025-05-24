@@ -1,6 +1,8 @@
 '''
 Infiltration Score Analysis by Cell Type and Necrosis
 
+Data is standardised to TPM (Transcripts Per Million).
+
 This script analyzes immune cell infiltration scores in relation to two categorical variables:
 1. Cell Type (e.g., different immune populations)
 2. Necrosis level (tissue damage severity)
