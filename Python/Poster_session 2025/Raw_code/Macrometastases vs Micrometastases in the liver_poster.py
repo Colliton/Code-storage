@@ -1,6 +1,10 @@
 """
 Comparison of Liver Metastases in Experimental Mouse Groups
 
+The analysis was performed for mice that lived to at least day 9 (≥ 9).
+Mouse 311 (healthy/no primary tumour) and 
+mice 324 and 335 (RNA from primary tumours was not sequenced due to low RIN values) were excluded from the analysis.
+
 This script includes two complementary visual analyses of liver metastases data:
 
 1. Full categorization (M0–M3) in stacked bar plots by group.
