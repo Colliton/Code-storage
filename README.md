@@ -11,7 +11,10 @@ Most of the files are related to projects carried out during my PhD. They relate
     .
     ├── Python/
     │   ├── Raw_code/
-    │   └── Jupyter_Notebook/
+    │   ├── Jupyter_Notebook/
+    │   └── Poster_session 2025/
+    │       ├── Raw_code/
+    │       └── Jupyter_Notebook/
     │
     ├── SQL/
     │   └── OPUS_BC.sql
