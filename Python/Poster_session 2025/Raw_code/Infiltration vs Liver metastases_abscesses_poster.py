@@ -1,6 +1,8 @@
 """
 Infiltration Score vs Liver Metastases and Abscesses (Group Comparison)
 
+Data is standardised to TPM (Transcripts Per Million).
+
 This script analyzes and visualizes the relationship between immune cell infiltration (infiltration score)
 and two liver parameters: metastases and abscesses, across control and treated groups in a mouse model.
 
