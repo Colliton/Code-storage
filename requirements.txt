@@ -9,3 +9,4 @@ tkinter (built-in)
 collections.Counter
 string
 adjustText
+re
