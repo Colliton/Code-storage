@@ -1,0 +1,8 @@
+Pandas to pakiet, którego najczęściej używamy do zadań związanych
+z analizą danych i obszarem data science. Jest on zbudowany na bazie pakietu
+NumPy, który zapewnia obsługę tablic wielowymiarowych.
+Biblioteka Pandas operuje na danych w postaci tabeli zwanej ramką danych (ang. DataFrame).
+Umożliwia ona wczytanie danych tabelarycznych z różnych źródeł
+np. z pliku *.csv, z tabeli bazy danych SQL, z arkusza kalkulacyjnego Excel.
+Całość danych Pandas przechowuje w pamięci RAM.
+Jeśli zbiór nie mieści się w pamięci, musi być podzielony na mniejsze fragmenty.
