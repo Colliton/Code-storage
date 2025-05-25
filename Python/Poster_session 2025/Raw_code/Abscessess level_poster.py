@@ -36,16 +36,6 @@ Output:
 - Plot 1: Abscess level by group (4-category classification)
 - Plot 2: Grouped abscess severity (Trace/None vs. Mild/Severe) with annotated p-value
 """
-'''
-Visualization and statistical analysis of liver abscess severity in mice across experimental groups.
-
-This script generates:
-1. A full-scale stacked bar plot showing the distribution of liver abscess severity (A0–A3) across groups.
-2. A simplified 2-level classification (Trace or None vs. Mild and Severe) with a Chi-square test for statistical significance.
-
-Input: 'Infiltration vs Metastases_abscesses.xlsx' Excel file
-Dependencies: pandas, seaborn, matplotlib, scipy
-'''
 
 import pandas as pd
 import seaborn as sns
