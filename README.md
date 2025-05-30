@@ -11,6 +11,7 @@ Most of the files are related to projects carried out during my PhD. They relate
     .
     ├── Python/
     │   ├── Additional_projects/
+    │       ├── ML/
     │       └── Text_analysis/
     │   ├── Jupyter_Notebook/
     │   ├── Poster_session 2025/
@@ -37,17 +38,27 @@ Most of the files are related to projects carried out during my PhD. They relate
 - `OPUS_BC.sql` – SQL queries used to extract and preprocess data from the OPUS_BC database.
 
 **Poster_session 2025**
-- `Abscesses level_all mice_poster.py` & `Abscesses level_all mice_poster.ipynb` - Percentage of mice with different levels of liver abscesses/(neutrophile) inflammation across experimental groups (all mice).
-- `Abscesses level_poster.py` & `Abscesses level_poster.ipynb` - Percentage of mice with different levels of liver abscesses/(neutrophile) inflammation across experimental groups (≥ 9, without no. 311, 324 & 335).
-- `Cell Type_Necrosis in PT vs Liver metastasses_abscesses_poster.py` & `Cell Type_Necrosis in PT vs Liver metastasses_abscesses_poster.ipynb` - Visualization and statistical analysis of features of primary tumors in the TNBC mouse model (relationships between cell type, necrosis, liver metastases and liver abscesses).
-- `Cell Type_Necrosis in primary tumour.py` & `Cell Type_Necrosis in primary tumour.ipynb` - Primary Tumor Cell Type and Necrosis Analysis with Chi-Square Test and Visualization.
-- `Clustermap with 2 colorbars_poster.py` & `Clustermap with 2 colorbars_poster.ipynb` - Clustermap showing Z-scored immune cell abundances 
-in mouse tumor samples (data derived from ImmuCellAI-mouse analysis).
-- `Infiltration vs Cell Type_Necrosis_poster.py` & `Infiltration vs Cell Type_Necrosis_poster.ipynb` - Infiltration Score Analysis by Cell Type and Necrosis.
-- `Infiltration vs Liver metastases_abscesses_poster.py` & `Infiltration vs Liver metastases_abscesses_poster.ipynb` - Visualization and statistical analysis of the relationship between immune cell infiltration (infiltration score) and two liver parameters: metastases and abscesses, across control and treated groups in a mouse model.
-- `Macrometastases vs Micrometastases in the liver_all mice_poster.py` & `Macrometastases vs Micrometastases in the liver_all mice_poster.ipynb` - Comparison of Liver Metastases in Experimental Mouse Groups (all mice).
-- `Macrometastases vs Micrometastases in the liver_poster.py` & `Macrometastases vs Micrometastases in the liver_poster.ipynb` - Comparison of Liver Metastases in Experimental Mouse Groups (≥ 9, without no. 311, 324 & 335).
+This section contains scripts and Jupyter notebooks prepared for the 2025 poster presentation. The analyses focus on immune and pathological features in a TNBC mouse model, comparing control and treated groups.
+Each pair of .py and .ipynb files corresponds to a specific analysis and visualization that were explored during poster preparation and formed the basis for selecting the final content.
 
+🔬 Abscesses & Liver Inflammation
+- `Abscesses level_all mice_poster.*` — Percentage of mice with different levels of liver abscesses or neutrophilic inflammation (all mice).
+- `Abscesses level_poster.*` — Same as above, limited to mice ≥9 (excluding 311, 324, 335).
+
+🔬 Primary Tumor Features
+- `Cell Type_Necrosis in primary tumour.*` — Analysis of cell type and necrosis in primary tumors (Chi-square test + plots).
+- `Cell Type_Necrosis in PT vs Liver metastasses_abscesses_poster.*` — Relationships between tumor cell type, necrosis, liver metastases, and abscesses.
+
+🔬 Immune Infiltration
+- `Clustermap with 2 colorbars_poster.*` — Clustermap of Z-scored immune cell abundances (ImmuCellAI-mouse output).
+- `Infiltration vs Cell Type_Necrosis_poster.*` — Infiltration score by primary tumor cell type and necrosis status.
+- `Infiltration vs Liver metastases_abscesses_poster.*` — Infiltration scores vs liver metastases and abscesses across groups.
+
+🔬 Liver Metastases Comparison
+- `Macrometastases vs Micrometastases in the liver_all mice_poster.*` — Macro- vs micrometastases (all mice).
+- `Macrometastases vs Micrometastases in the liver_poster.*` — Same, filtered to mice ≥9 (excluding 311, 324, 335).
+
+**Additional_projects**
 
 ---
 
