@@ -10,3 +10,4 @@ collections.Counter
 string
 adjustText
 re
+scikit-learn
