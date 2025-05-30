@@ -30,12 +30,17 @@ Most of the files are related to projects carried out during my PhD. They relate
 
 ## 🔍 Content Overview
 
-- `Clustermap - 2 colourbars.py` & `Clustermap - 2 colorbars.ipynb` – Heatmap/Clustermap for Immune Cell Infiltration in Tumours of Balb/c Mice Treated with Pyrvinium Pamoate.
-- `SmartSeq cycle count comparison.py` & `SmartSeq cycle count comparison.ipynb` - Scatter Plot for qPCR Cq Mean Values in 4T1 and Positive Control Samples.
-- `Survival Curve Serum_separate median.py` & `Survival Curve Serum_separate median.ipynb` - Survival Analysis of Mice Based on PUFA Serum Levels.
-- `Tumor Volume Changes Over Time.py` & `Tumor Volume Changes Over Time.ipynb` - Tumor Volume Dynamics in Mice with Pyrvinium Pamoate (PP) Administration.
-- `Volcano_plot_4T1.py` & `Volcano_plot_4T1.ipynb` – Volcano Plot for Differential Gene Expression in 4T1 Cells Treated with Pyrvinium Pamoate.
-- `OPUS_BC.sql` – SQL queries used to extract and preprocess data from the OPUS_BC database.
+**Other Analyses**
+
+This section contains additional scripts and notebooks supporting various analyses related to tumor biology and treatment effects in mouse models. These analyses complement the main poster work by exploring immune infiltration patterns, gene expression changes, tumor growth dynamics, and survival outcomes, as well as providing database queries for clinical material from TNBC patients.
+
+- `Clustermap - 2 colourbars.*` — Heatmap/Clustermap for immune cell infiltration in tumours of Balb/c mice treated with Pyrvinium Pamoate.
+- `SmartSeq cycle count comparison.*` — Scatter plot for qPCR Cq mean values in 4T1 and positive control samples.
+- `Survival Curve Serum_separate median.*` — Survival analysis of mice based on PUFA serum levels.
+- `Tumor Volume Changes Over Time.*` — Tumor volume dynamics in mice treated with Pyrvinium Pamoate (PP).
+- `Volcano_plot_4T1.*` — Volcano plot for differential gene expression in 4T1 cells treated with Pyrvinium Pamoate.
+- `OPUS_BC.sql` — SQL queries used to extract and preprocess data from the OPUS_BC database.
+
 
 **Poster_session 2025**
 
@@ -65,6 +70,20 @@ Each pair of .py and .ipynb files corresponds to a specific analysis and visuali
 - `Infiltration vs Liver metastases_abscesses_poster.*` — Infiltration scores vs liver metastases and inflammation across groups.
 
 **Additional_projects**
+
+This section contains various Python projects, ranging from classic scripts and small games to machine learning and text analysis applications.
+
+🤖 ML
+- `Wine_classification.py` & `Wine_classification.ipynb` — Classification model and notebook applied to wine dataset analysis.
+
+📝 Text Analysis
+- `analyzer.py` — Core text analysis functionality.  
+- `gui_text_analyzer.py` — Simple graphical interface for text analysis.  
+- `input_text.txt` — Sample input text file.
+
+🎮 Other Python Scripts
+- `Bank_account.py` — Basic bank account management script.  
+- `Simple_treasure_game.py` — A simple treasure hunt game implemented in Python.
 
 ---
 
