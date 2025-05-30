@@ -43,26 +43,26 @@ This section contains scripts and Jupyter notebooks prepared for the 2025 poster
 Each pair of .py and .ipynb files corresponds to a specific analysis and visualization that were explored during poster preparation and formed the basis for selecting the final content.
 
 🔬 Inflammation & Metastases in the Liver
-- Abscesses level_all mice_poster.* — Percentage of mice with different levels of liver inflammation or neutrophilic inflammation (all mice).
-- Abscesses level_poster.* — Same as above, limited to mice treated with Pyrvinium Pamoate (PP) for 9 days or more (excluding 311, 324, 335).
-- Macrometastases vs Micrometastases in the liver_all mice_poster.* — Comparison of macro- and micrometastases (all mice).
-- Macrometastases vs Micrometastases in the liver_poster.* — Same, filtered to mice treated with PP for 9 days or more (excluding 311, 324, 335).
-- Inflammation score vs Metastasis score_no311_nostatistics_poster.* — Visualization of inflammation and metastasis scores excluding mouse no. 311, without statistical tests.
+- `Abscesses level_all mice_poster.*` — Percentage of mice with different levels of liver inflammation or neutrophilic inflammation (all mice).
+- `Abscesses level_poster.*` — Same as above, limited to mice treated with Pyrvinium Pamoate (PP) for 9 days or more (excluding 311, 324, 335).
+- `Macrometastases vs Micrometastases in the liver_all mice_poster.*` — Comparison of macro- and micrometastases (all mice).
+- `Macrometastases vs Micrometastases in the liver_poster.*` — Same, filtered to mice treated with PP for 9 days or more (excluding 311, 324, 335).
+- `Inflammation score vs Metastasis score_no311_nostatistics_poster.*` — Visualization of inflammation and metastasis scores excluding mouse no. 311, without statistical tests.
 
 🔬 Primary Tumor Features
-- Cell Type_Necrosis in primary tumour.* — Analysis of cell type and necrosis in primary tumors (Chi-square test + plots).
-- Cell Type_Necrosis in PT vs Liver metastases_abscesses_poster.* — Relationships between tumor cell type, necrosis, liver metastases, and inflammation.
+- `Cell Type_Necrosis in primary tumour.*` — Analysis of cell type and necrosis in primary tumors (Chi-square test + plots).
+- `Cell Type_Necrosis in PT vs Liver metastases_abscesses_poster.*` — Relationships between tumor cell type, necrosis, liver metastases, and inflammation.
 
 🔬 RNA-seq Analysis of Primary Tumors
-- Volcano plot_PT_day9_poster.* — Volcano plot of differential gene expression in primary tumors after 9 or more days of treatment (RNA-seq data).
-- Volcano plot_PT_day9_excluded_genes_poster.* — Volcano plot excluding selected genes for better clarity (RNA-seq data).
-- GO Enrichment_PT_Day9_poster.* — Gene Ontology enrichment analysis for primary tumors treated for 9 or more days (RNA-seq data).
+- `Volcano plot_PT_day9_poster.*` — Volcano plot of differential gene expression in primary tumors after 9 or more days of treatment (RNA-seq data).
+- `Volcano plot_PT_day9_excluded_genes_poster.*` — Volcano plot excluding selected genes for better clarity (RNA-seq data).
+- `GO Enrichment_PT_Day9_poster.*` — Gene Ontology enrichment analysis for primary tumors treated for 9 or more days (RNA-seq data).
 
 🔬 Infiltration Score
-- Clustermap with 2 colorbars_poster.* — Clustermap of Z-scored immune cell abundances (ImmuCellAI-mouse output).
-- Clustermap with 2 colorbars_significance_poster.* — Clustermap highlighting statistically significant differences between treated and control groups.
-- Infiltration vs Cell Type_Necrosis_poster.* — Infiltration score by primary tumor cell type and necrosis status.
-- Infiltration vs Liver metastases_abscesses_poster.* — Infiltration scores vs liver metastases and inflammation across groups.
+- `Clustermap with 2 colorbars_poster.*` — Clustermap of Z-scored immune cell abundances (ImmuCellAI-mouse output).
+- `Clustermap with 2 colorbars_significance_poster.*` — Clustermap highlighting statistically significant differences between treated and control groups.
+- `Infiltration vs Cell Type_Necrosis_poster.*` — Infiltration score by primary tumor cell type and necrosis status.
+- `Infiltration vs Liver metastases_abscesses_poster.*` — Infiltration scores vs liver metastases and inflammation across groups.
 
 **Additional_projects**
 
