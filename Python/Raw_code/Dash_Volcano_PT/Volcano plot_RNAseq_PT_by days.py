@@ -36,6 +36,7 @@ Dependencies:
 - pandas
 - numpy
 - plotly
+- os
 
 To run locally:
 1. Install dependencies: `pip install dash pandas numpy plotly`
@@ -47,6 +48,7 @@ import pandas as pd
 import numpy as np
 import plotly.express as px
 from dash import Dash, dcc, html, Input, Output
+import os
 
 # Load the input dataset
 df = pd.read_csv('summary_table_supervised_PT_PP_PT_CTRL_and_PT_PP_PT_CTRL_long_7_9_12_230524.txt', sep='\t')
@@ -123,4 +125,5 @@ def update_volcano_plot(day):
     
 # Run the app
 if __name__ == '__main__':
-    app.run(debug=True, port=8051)
+    port = int(os.environ.get('PORT', 8051))
+    app.run_server(debug=True, host='0.0.0.0', port=port)
