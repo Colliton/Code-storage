@@ -126,4 +126,4 @@ def update_volcano_plot(day):
 # Run the app
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 8051))
-    app.run_server(debug=True, host='0.0.0.0', port=port)
+    app.run(debug=True, host='0.0.0.0', port=port)
