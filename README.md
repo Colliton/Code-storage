@@ -11,6 +11,7 @@ Most of the files are related to projects carried out during my PhD. They relate
     .
     ├── Python/
     │   ├── Additional_projects/
+    │       ├── ML/
     │       └── Text_analysis/
     │   ├── Jupyter_Notebook/
     │   ├── Poster_session 2025/
@@ -29,25 +30,60 @@ Most of the files are related to projects carried out during my PhD. They relate
 
 ## 🔍 Content Overview
 
-- `Clustermap - 2 colourbars.py` & `Clustermap - 2 colorbars.ipynb` – Heatmap/Clustermap for Immune Cell Infiltration in Tumours of Balb/c Mice Treated with Pyrvinium Pamoate.
-- `SmartSeq cycle count comparison.py` & `SmartSeq cycle count comparison.ipynb` - Scatter Plot for qPCR Cq Mean Values in 4T1 and Positive Control Samples.
-- `Survival Curve Serum_separate median.py` & `Survival Curve Serum_separate median.ipynb` - Survival Analysis of Mice Based on PUFA Serum Levels.
-- `Tumor Volume Changes Over Time.py` & `Tumor Volume Changes Over Time.ipynb` - Tumor Volume Dynamics in Mice with Pyrvinium Pamoate (PP) Administration.
-- `Volcano_plot_4T1.py` & `Volcano_plot_4T1.ipynb` – Volcano Plot for Differential Gene Expression in 4T1 Cells Treated with Pyrvinium Pamoate.
-- `OPUS_BC.sql` – SQL queries used to extract and preprocess data from the OPUS_BC database.
+**Other Analyses**
+
+This section contains additional scripts and notebooks supporting various analyses related to tumor biology and treatment effects in mouse models. These analyses complement the main poster work by exploring immune infiltration patterns, gene expression changes, tumor growth dynamics, and survival outcomes, as well as providing database queries for clinical material from TNBC patients.
+
+- `Clustermap - 2 colourbars.*` — Heatmap/Clustermap for immune cell infiltration in tumours of Balb/c mice treated with Pyrvinium Pamoate.
+- `SmartSeq cycle count comparison.*` — Scatter plot for qPCR Cq mean values in 4T1 and positive control samples.
+- `Survival Curve Serum_separate median.*` — Survival analysis of mice based on PUFA serum levels.
+- `Tumor Volume Changes Over Time.*` — Tumor volume dynamics in mice treated with Pyrvinium Pamoate (PP).
+- `Volcano_plot_4T1.*` — Volcano plot for differential gene expression in 4T1 cells treated with Pyrvinium Pamoate.
+- `OPUS_BC.sql` — SQL queries used to extract and preprocess data from the OPUS_BC database.
+
 
 **Poster_session 2025**
-- `Abscesses level_all mice_poster.py` & `Abscesses level_all mice_poster.ipynb` - Percentage of mice with different levels of liver abscesses/(neutrophile) inflammation across experimental groups (all mice).
-- `Abscesses level_poster.py` & `Abscesses level_poster.ipynb` - Percentage of mice with different levels of liver abscesses/(neutrophile) inflammation across experimental groups (≥ 9, without no. 311, 324 & 335).
-- `Cell Type_Necrosis in PT vs Liver metastasses_abscesses_poster.py` & `Cell Type_Necrosis in PT vs Liver metastasses_abscesses_poster.ipynb` - Visualization and statistical analysis of features of primary tumors in the TNBC mouse model (relationships between cell type, necrosis, liver metastases and liver abscesses).
-- `Cell Type_Necrosis in primary tumour.py` & `Cell Type_Necrosis in primary tumour.ipynb` - Primary Tumor Cell Type and Necrosis Analysis with Chi-Square Test and Visualization.
-- `Clustermap with 2 colorbars_poster.py` & `Clustermap with 2 colorbars_poster.ipynb` - Clustermap showing Z-scored immune cell abundances 
-in mouse tumor samples (data derived from ImmuCellAI-mouse analysis).
-- `Infiltration vs Cell Type_Necrosis_poster.py` & `Infiltration vs Cell Type_Necrosis_poster.ipynb` - Infiltration Score Analysis by Cell Type and Necrosis.
-- `Infiltration vs Liver metastases_abscesses_poster.py` & `Infiltration vs Liver metastases_abscesses_poster.ipynb` - Visualization and statistical analysis of the relationship between immune cell infiltration (infiltration score) and two liver parameters: metastases and abscesses, across control and treated groups in a mouse model.
-- `Macrometastases vs Micrometastases in the liver_all mice_poster.py` & `Macrometastases vs Micrometastases in the liver_all mice_poster.ipynb` - Comparison of Liver Metastases in Experimental Mouse Groups (all mice).
-- `Macrometastases vs Micrometastases in the liver_poster.py` & `Macrometastases vs Micrometastases in the liver_poster.ipynb` - Comparison of Liver Metastases in Experimental Mouse Groups (≥ 9, without no. 311, 324 & 335).
 
+This section contains scripts and Jupyter notebooks prepared for the 2025 poster presentation. The analyses focus on immune and pathological features in a TNBC mouse model, comparing control and treated groups.
+Each pair of .py and .ipynb files corresponds to a specific analysis and visualization that were explored during poster preparation and formed the basis for selecting the final content.
+
+🔬 Inflammation & Metastases in the Liver
+- `Abscesses level_all mice_poster.*` — Percentage of mice with different levels of liver inflammation or neutrophilic inflammation (all mice).
+- `Abscesses level_poster.*` — Same as above, limited to mice treated with Pyrvinium Pamoate (PP) for 9 days or more (excluding 311, 324, 335).
+- `Macrometastases vs Micrometastases in the liver_all mice_poster.*` — Comparison of macro- and micrometastases (all mice).
+- `Macrometastases vs Micrometastases in the liver_poster.*` — Same, filtered to mice treated with PP for 9 days or more (excluding 311, 324, 335).
+- `Inflammation score vs Metastasis score_no311_nostatistics_poster.*` — Visualization of inflammation and metastasis scores excluding mouse no. 311, without statistical tests.
+
+🔬 Primary Tumor Features
+- `Cell Type_Necrosis in primary tumour.*` — Analysis of cell type and necrosis in primary tumors (Chi-square test + plots).
+- `Cell Type_Necrosis in PT vs Liver metastases_abscesses_poster.*` — Relationships between tumor cell type, necrosis, liver metastases, and inflammation.
+
+🔬 RNA-seq Analysis of Primary Tumors
+- `Volcano plot_PT_day9_poster.*` — Volcano plot of differential gene expression in primary tumors after 9 or more days of treatment (RNA-seq data).
+- `Volcano plot_PT_day9_excluded_genes_poster.*` — Volcano plot excluding selected genes for better clarity (RNA-seq data).
+- `GO Enrichment_PT_Day9_poster.*` — Gene Ontology enrichment analysis for primary tumors treated for 9 or more days (RNA-seq data).
+
+🔬 Infiltration Score
+- `Clustermap with 2 colorbars_poster.*` — Clustermap of Z-scored immune cell abundances (ImmuCellAI-mouse output).
+- `Clustermap with 2 colorbars_significance_poster.*` — Clustermap highlighting statistically significant differences between treated and control groups.
+- `Infiltration vs Cell Type_Necrosis_poster.*` — Infiltration score by primary tumor cell type and necrosis status.
+- `Infiltration vs Liver metastases_abscesses_poster.*` — Infiltration scores vs liver metastases and inflammation across groups.
+
+**Additional_projects**
+
+This section contains various Python projects, ranging from classic scripts and small games to machine learning and text analysis applications.
+
+🤖 ML
+- `Wine_classification.py` & `Wine_classification.ipynb` — Classification model and notebook applied to wine dataset analysis.
+
+📝 Text Analysis
+- `analyzer.py` — Core text analysis functionality.  
+- `gui_text_analyzer.py` — Simple graphical interface for text analysis.  
+- `input_text.txt` — Sample input text file.
+
+🎮 Other Python Scripts
+- `Bank_account.py` — Basic bank account management script.  
+- `Simple_treasure_game.py` — A simple treasure hunt game implemented in Python.
 
 ---
 

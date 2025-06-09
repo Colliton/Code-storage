@@ -11,3 +11,4 @@ string
 adjustText
 re
 scikit-learn
+joblib
