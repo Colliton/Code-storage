@@ -16,9 +16,9 @@ Most of the files are related to projects carried out during my PhD. They relate
     │   ├── Jupyter_Notebook/
     │   ├── Poster_session 2025/
     │       ├── Raw_code/
-    │           └── Dash_Volcano_PT/
     │       └── Jupyter_Notebook/
     │   └──Raw_code/
+    │       └── Dash_Volcano_PT/
     │
     ├── SQL/
     │   └── OPUS_BC.sql
