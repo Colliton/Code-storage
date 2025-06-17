@@ -44,12 +44,12 @@ This section contains additional scripts and notebooks supporting various analys
 - `Volcano_plot_4T1.*` — Volcano plot for differential gene expression in 4T1 cells treated with Pyrvinium Pamoate.
 - `OPUS_BC.sql` — SQL queries used to extract and preprocess data from the OPUS_BC database.
 
-    *Dash_Volcano_PT (data & helper files)*
-      This subfolder contains data and helper scripts for generating volcano plots using RNA-seq results, intended for interactive use or app deployment.
-          - `Volcano plot_RNAseq_PT_by days.py` — Generates volcano plots of RNA-seq data stratified by treatment duration (days).
-          - `summary_table_supervised_PT_PP_PT_CTRL_and_PT_PP_PT_CTRL_long_7_9_12_230524.txt` — Summary table of differentially expressed genes comparing PP vs CTRL                 groups on days 7, 9, and 12.
-          - `requirements.txt` — List of Python libraries required to run the volcano plot pipeline or web app.
-          - `runtime.txt` — Environment configuration file (e.g., for Heroku deployments).
+**Dash_Volcano_PT (data & helper files)**
+This subfolder contains data and helper scripts for generating volcano plots using RNA-seq results, intended for interactive use or app deployment.
+- `Volcano plot_RNAseq_PT_by days.py` — Generates volcano plots of RNA-seq data stratified by treatment duration (days).
+- `summary_table_supervised_PT_PP_PT_CTRL_and_PT_PP_PT_CTRL_long_7_9_12_230524.txt` — Summary table of differentially expressed genes comparing PP vs CTRL groups on days 7, 9, and 12.
+- `requirements.txt` — List of Python libraries required to run the volcano plot pipeline or web app.
+- `runtime.txt` — Environment configuration file (e.g., for Heroku deployments).
 
 **Poster_session 2025**
 
