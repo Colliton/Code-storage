@@ -96,6 +96,22 @@ This section contains various Python projects, ranging from classic scripts and 
 
 ---
 
+### 🗺️ Quick Folder Map
+
+| **Folder path** | **Description** |
+|-----------------|-----------------|
+| `Python/Poster_session 2025/Jupyter_Notebook` | Jupyter notebooks created for the 2025 poster presentation. Each file corresponds to a specific analysis. |
+| `Python/Poster_session 2025/Raw_code` | Matching Python scripts for each poster analysis notebook. Same filenames, clean code. |
+| `Python/Jupyter_Notebook` | Independent exploratory notebooks not linked to the poster. Includes clustermaps, tumor volume trends, survival curves, etc. |
+| `Python/Raw_code` | Helper scripts and standalone analyses (e.g. lipid profiling, 4T1 volcano plots) outside the poster scope. |
+| `Python/Raw_code/Dash_Volcano_PT` | Data and scripts for volcano plot generation and app deployment (RNA-seq PT groups). |
+| `Python/Additional_projects/ML` | Machine learning examples and models (e.g. wine classification task). |
+| `Python/Additional_projects/Text_analysis` | Text processing utilities with both CLI and GUI interface. |
+| `Python/Additional_projects` | Miscellaneous Python scripts, such as games or simulations. |
+| `SQL/` | SQL queries for TNBC patient data extraction from OPUS_BC database. |
+| *(root)* | Shared files: `README.md`, `requirements.txt`, `.gitignore`, and structure snapshot `repo_structure.txt`. |
+
+---
 ## 🛠️ Technologies
 
 - Python 3.10+
