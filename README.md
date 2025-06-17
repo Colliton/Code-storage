@@ -36,12 +36,20 @@ Most of the files are related to projects carried out during my PhD. They relate
 This section contains additional scripts and notebooks supporting various analyses related to tumor biology and treatment effects in mouse models. These analyses complement the main poster work by exploring immune infiltration patterns, gene expression changes, tumor growth dynamics, and survival outcomes, as well as providing database queries for clinical material from TNBC patients.
 
 - `Clustermap - 2 colourbars.*` — Heatmap/Clustermap for immune cell infiltration in tumours of Balb/c mice treated with Pyrvinium Pamoate.
+- `Clustermap_lipids_PT_no311.*` - Clustermap for lipid content (%mol) in primary tumours of Balb/c mice treated with Pyrvinium Pamoate (without mouse no. 311).
+- `Lipids_PT_no311.*` - Analysis of lipid levels in primary tumours (excluding mouse no. 311); includes box plots and statistical tests.
 - `SmartSeq cycle count comparison.*` — Scatter plot for qPCR Cq mean values in 4T1 and positive control samples.
 - `Survival Curve Serum_separate median.*` — Survival analysis of mice based on PUFA serum levels.
 - `Tumor Volume Changes Over Time.*` — Tumor volume dynamics in mice treated with Pyrvinium Pamoate (PP).
 - `Volcano_plot_4T1.*` — Volcano plot for differential gene expression in 4T1 cells treated with Pyrvinium Pamoate.
 - `OPUS_BC.sql` — SQL queries used to extract and preprocess data from the OPUS_BC database.
 
+    *Dash_Volcano_PT (data & helper files)*
+      This subfolder contains data and helper scripts for generating volcano plots using RNA-seq results, intended for interactive use or app deployment.
+          - `Volcano plot_RNAseq_PT_by days.py` — Generates volcano plots of RNA-seq data stratified by treatment duration (days).
+          - `summary_table_supervised_PT_PP_PT_CTRL_and_PT_PP_PT_CTRL_long_7_9_12_230524.txt` — Summary table of differentially expressed genes comparing PP vs CTRL                 groups on days 7, 9, and 12.
+          - `requirements.txt` — List of Python libraries required to run the volcano plot pipeline or web app.
+          - `runtime.txt` — Environment configuration file (e.g., for Heroku deployments).
 
 **Poster_session 2025**
 
