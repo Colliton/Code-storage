@@ -1,3 +1,48 @@
+'''
+Mobile application created during a women-only hackathon held at the Inkubator Starter in Gdańsk, Poland, on June 24–25, 2025.
+
+This project was developed within a tight 6-hour time frame. 
+Due to the limited time, the code is written in a single file without separating widgets and logic into multiple components — to showcase how much can be achieved even without years of industry experience.
+
+The app was built using Flutter and Dart in Android Studio.
+
+Requirements:
+- Flutter SDK (>=3.0.0)
+- Dart SDK
+- Android Studio (recommended)
+- A device/emulator with internet access
+
+Dependencies (from pubspec.yaml):
+- flutter
+- flutter_localizations
+- table_calendar ^3.0.9
+- cupertino_icons ^1.0.2
+- shared_preferences ^2.2.2
+- url_launcher ^6.1.10
+
+🛠Dev dependencies:
+- flutter_test
+- flutter_lints ^5.0.0
+
+Features:
+- Bilingual interface (PL/EN)
+- "Leader of the Week" module with Q&A links
+- Mental Health calendar with basic chatbot
+- Event listings for kids and adults
+- STEM course filtering
+- Thematic forum with blog-style posts
+- Contact and Help sections
+- Profile screen with image and LinkedIn link
+
+Assets:
+- Images stored in assets/images/
+
+⚠️ Note:
+This is a proof-of-concept MVP created under hackathon conditions. Code modularization and visual polishing are planned for future updates.
+
+'''
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
