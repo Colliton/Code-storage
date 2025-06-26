@@ -46,7 +46,7 @@ This is a proof-of-concept MVP created under hackathon conditions. Code modulari
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:url_launcher/url_launcher.dart'; // do otwierania linków LinkedIn
+import 'package:url_launcher/url_launcher.dart'; // linki
 import 'package:table_calendar/table_calendar.dart';
 
 void main() {
@@ -65,7 +65,7 @@ class WomanInStemApp extends StatelessWidget {
         appBarTheme: AppBarTheme(
           backgroundColor: Color(0xFF2D2A4A),
           titleTextStyle: TextStyle(
-            color: Color(0xFFF2E9DC), // Twój najjaśniejszy kolor
+            color: Color(0xFFF2E9DC), 
             fontWeight: FontWeight.bold,
             fontSize: 22,
           ),
@@ -121,7 +121,7 @@ class _MainScreenState extends State<MainScreen> {
   ];
 
   void _onTileTapped(int index) {
-    if (index == _tiles.length - 1) { // ostatni kafelek to Contact
+    if (index == _tiles.length - 1) {
       Navigator.push(
         context,
         MaterialPageRoute(builder: (_) => ContactPage()),
@@ -161,7 +161,7 @@ class _MainScreenState extends State<MainScreen> {
               title: Text('Profile'),
               onTap: () {
                 Navigator.pop(context);
-                // Tutaj nawigacja do profilu
+                // nawigacja do profilu
                 Navigator.push(context,
                     MaterialPageRoute(builder: (_) => ProfilePage()));
               },
@@ -1079,7 +1079,7 @@ class _MentalHealthPageState extends State<MentalHealthPage> {
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: beigeColor),
           onPressed: () {
-            Navigator.pop(context); // ← to cofnie do poprzedniego ekranu
+            Navigator.pop(context); // cofanie do poprzedniego ekranu
           },
         ),
       ),
