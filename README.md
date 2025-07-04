@@ -11,11 +11,13 @@ Most of the files are related to projects carried out during my PhD. They relate
     .
     ├── Flutter/
     │   └── Woman_in_STEM.dart
-    ├── powerBi&Tableau/
+    │ 
+    ├── PowerBI&Tableau/
     │   ├── PowerBI/
     │       └── Employee Management Power BI Report.md
     │   ├── Tableau/
     │       └── Movies Analysis Tableau Report.md
+    │ 
     ├── Python/
     │   ├── Additional_projects/
     │       ├── ML/
