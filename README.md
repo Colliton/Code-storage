@@ -118,6 +118,9 @@ This section contains various Python projects, ranging from classic scripts and 
 - JupyterLab
 - Libraries: `pandas`, `seaborn`, `matplotlib`, `numpy`, `lifelines`, `scipy`
 - SQL (PostgreSQL / MySQL depending on the environment)
+- Flutter — mobile app development framework (Dart)
+- Power BI — data visualization and business intelligence
+- Tableau — interactive dashboards and visual analytics
 
 ---
 
