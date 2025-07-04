@@ -51,4 +51,7 @@ Explore the live interactive Power BI report:
 http://bit.ly/44foyww
 
 📝 Notes
-This project is intended for educational and portfolio use.
+- This project is intended for educational and portfolio use.
+- Depending on your browser settings (region and language), system fonts, and date format preferences, some text elements, date labels, and number formats in the report may appear differently.
+- For the best viewing experience, please ensure your system and browser locale settings match the intended report language (English).
+- Variations in date and number formatting are caused by regional settings and are not errors in the report.
