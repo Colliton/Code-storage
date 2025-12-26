@@ -1,7 +1,7 @@
 /*
 Purpose:
 - Database logic layer for the Clinical Trial project
-- Defines reusable functions, triggers, and analytical views
+- Defines reusable functions and triggers
 
 Execution order:
 - Run after:
@@ -11,13 +11,17 @@ Execution order:
 Rerunnable:
 - Functions are created with CREATE OR REPLACE
 - Triggers are dropped and recreated
-- Views are created with CREATE OR REPLACE
+
+Testing:
+- Dedicated tests are stored in: 08_Clinical_Trial_Function_Tests.sql
+- Tests are safe to run repeatedly (executed inside a transaction and rolled back).
 */
 
--- ============================================================
--- Function: set_updated_at
--- Purpose: automatically update updated_at column on row update
--- ============================================================
+/*
+Function: set_updated_at
+Purpose: 
+- Automatically update updated_at column on row update.
+/*
 
 CREATE OR REPLACE FUNCTION clinical.set_updated_at()
 RETURNS TRIGGER
@@ -29,9 +33,7 @@ BEGIN
 END;
 $$;
 
--- ============================================================
 -- Triggers: updated_at
--- ============================================================
 
 -- Table: clinical.studies
 DROP TRIGGER IF EXISTS trg_studies_set_updated_at ON clinical.studies;
