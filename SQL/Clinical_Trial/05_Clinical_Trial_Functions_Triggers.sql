@@ -13,7 +13,7 @@ Rerunnable:
 - Triggers are dropped and recreated
 
 Testing:
-- Dedicated tests are stored in: 08_Clinical_Trial_Function_Tests.sql
+- Dedicated tests are stored in: 08_Clinical_Trial_Functions_Tests.sql
 - Tests are safe to run repeatedly (executed inside a transaction and rolled back).
 */
 
