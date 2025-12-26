@@ -32,14 +32,14 @@ SELECT clinical.visit_status_info(
 
 -- Not found: invalid subject
 -- EXPECTED: EXCEPTION
--- SELECT clinical.visit_status_info(999999, 1);
+SELECT clinical.visit_status_info(999999, 1);
 
 -- Not found: invalid visit
 -- EXPECTED: EXCEPTION
--- SELECT clinical.visit_status_info(
---    (SELECT subject_id FROM clinical.subjects LIMIT 1),
---     999999
--- );
+SELECT clinical.visit_status_info(
+	(SELECT subject_id FROM clinical.subjects LIMIT 1),
+	999999
+	);
 
 -- 2. subjects_per_study(p_study_code)
 
@@ -50,12 +50,12 @@ SELECT clinical.subjects_per_study(
 
 -- Invalid input
 -- EXPECTED: EXCEPTION
--- SELECT clinical.subjects_per_study(NULL);
--- SELECT clinical.subjects_per_study('   ');
+SELECT clinical.subjects_per_study(NULL);
+SELECT clinical.subjects_per_study('   ');
 
 -- Not found
 -- EXPECTED: EXCEPTION
--- SELECT clinical.subjects_per_study('STUDY_DOES_NOT_EXIST');
+SELECT clinical.subjects_per_study('STUDY_DOES_NOT_EXIST');
 
 -- 3. subject_ready_to_randomization(p_subject_id)
 
@@ -83,14 +83,13 @@ WHERE EXISTS (
 )
 LIMIT 1;
 
-
 -- Invalid input
 -- EXPECTED: EXCEPTION
--- SELECT clinical.subject_ready_to_randomization(NULL);
+SELECT clinical.subject_ready_to_randomization(NULL);
 
 -- Not found
 -- EXPECTED: EXCEPTION
--- SELECT clinical.subject_ready_to_randomization(999999);
+SELECT clinical.subject_ready_to_randomization(999999);
 
 -- 4. subject_visits(p_subject_code)
 
@@ -102,8 +101,8 @@ FROM clinical.subject_visits(
 
 -- Invalid input
 -- EXPECTED: EXCEPTION
--- SELECT * FROM clinical.subject_visits(NULL);
--- SELECT * FROM clinical.subject_visits('   ');
+SELECT * FROM clinical.subject_visits(NULL);
+SELECT * FROM clinical.subject_visits('   ');
 
 -- Not found
 -- EXPECTED: EXCEPTION
@@ -119,12 +118,12 @@ FROM clinical.study_metrics(
 
 -- Invalid input
 -- EXPECTED: EXCEPTION
--- SELECT * FROM clinical.study_metrics(NULL);
--- SELECT * FROM clinical.study_metrics('   ');
+SELECT * FROM clinical.study_metrics(NULL);
+SELECT * FROM clinical.study_metrics('   ');
 
 -- Not found
 -- EXPECTED: EXCEPTION
--- SELECT * FROM clinical.study_metrics('STUDY_DOES_NOT_EXIST');
+SELECT * FROM clinical.study_metrics('STUDY_DOES_NOT_EXIST');
 
 -- 6. update_subject_status(p_subject_id, p_new_status)
 
@@ -146,25 +145,25 @@ SELECT clinical.update_subject_status(
 
 -- Invalid status value
 -- EXPECTED: EXCEPTION
--- SELECT clinical.update_subject_status(
---     (SELECT subject_id FROM clinical.subjects LIMIT 1),
---     'INVALID_STATUS'
--- );
+SELECT clinical.update_subject_status(
+	(SELECT subject_id FROM clinical.subjects LIMIT 1),
+	'INVALID_STATUS'
+	);
 
 -- Invalid input
 -- EXPECTED: EXCEPTION
--- SELECT clinical.update_subject_status(NULL, 'Enrolled');
--- SELECT clinical.update_subject_status(
---     (SELECT subject_id FROM clinical.subjects LIMIT 1),
---     NULL
--- );
+SELECT clinical.update_subject_status(NULL, 'Enrolled');
+SELECT clinical.update_subject_status(
+	(SELECT subject_id FROM clinical.subjects LIMIT 1),
+	NULL
+	);
 
 -- Example valid transition (depends on current status & data)
 -- Uncomment ONLY if transition is allowed by business rules
--- SELECT clinical.update_subject_status(
---     (SELECT subject_id FROM clinical.subjects LIMIT 1),
---     'Withdrawn'
--- );
+SELECT clinical.update_subject_status(
+	(SELECT subject_id FROM clinical.subjects LIMIT 1),
+	'Withdrawn'
+	);
 
 /*
 End of tests
