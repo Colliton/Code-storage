@@ -51,6 +51,7 @@ This section contains SQL-based projects focused on database design, data integr
 - `OPUS_BC.sql` — SQL queries used to extract and preprocess clinical data from the OPUS_BC database (TNBC patient material).
 
 **Dash_Volcano_PT (data & helper files)**
+
 This subfolder contains data and helper scripts for generating volcano plots using RNA-seq results, intended for interactive use or app deployment.
 - `Volcano plot_RNAseq_PT_by days.py` — Generates volcano plots of RNA-seq data stratified by treatment duration (days).
 - `summary_table_supervised_PT_PP_PT_CTRL_and_PT_PP_PT_CTRL_long_7_9_12_230524.txt` — Summary table of differentially expressed genes comparing PP vs CTRL groups on days 7, 9, and 12.
