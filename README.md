@@ -30,6 +30,7 @@ Most of the files are related to projects carried out during my PhD. They relate
     │       └── Dash_Volcano_PT/
     │
     ├── SQL/
+    |   ├── Clinical_Trial/
     │   └── OPUS_BC.sql
     │
     ├── .gitignore
@@ -40,18 +41,12 @@ Most of the files are related to projects carried out during my PhD. They relate
 
 ## 🔍 Content Overview
 
-**Other Analyses**
+**SQL Projects**
 
-This section contains additional scripts and notebooks supporting various analyses related to tumor biology and treatment effects in mouse models. These analyses complement the main poster work by exploring immune infiltration patterns, gene expression changes, tumor growth dynamics, and survival outcomes, as well as providing database queries for clinical material from TNBC patients.
+This section contains SQL-based projects focused on database design, data integrity, access control, and analytical querying. The SQL work is independent of the biological analyses and is intended to demonstrate structured database development and querying skills.
 
-- `Clustermap - 2 colourbars.*` — Heatmap/Clustermap for immune cell infiltration in tumours of Balb/c mice treated with Pyrvinium Pamoate.
-- `Clustermap_lipids_PT_no311.*` - Clustermap for lipid content (%mol) in primary tumours of Balb/c mice treated with Pyrvinium Pamoate (without mouse no. 311).
-- `Lipids_PT_no311.*` - Analysis of lipid levels in primary tumours (excluding mouse no. 311); includes box plots and statistical tests.
-- `SmartSeq cycle count comparison.*` — Scatter plot for qPCR Cq mean values in 4T1 and positive control samples.
-- `Survival Curve Serum_separate median.*` — Survival analysis of mice based on PUFA serum levels.
-- `Tumor Volume Changes Over Time.*` — Tumor volume dynamics in mice treated with Pyrvinium Pamoate (PP).
-- `Volcano_plot_4T1.*` — Volcano plot for differential gene expression in 4T1 cells treated with Pyrvinium Pamoate.
-- `OPUS_BC.sql` — SQL queries used to extract and preprocess data from the OPUS_BC database.
+- `SQL/Clinical_Trial/` — Complete PostgreSQL Clinical Trial database project, including conceptual and logical models, physical schema (DDL), sample data, PL/pgSQL functions and triggers, reporting views, role-based access control, optional Row-Level Security (RLS), and example analytical queries (CTEs, window functions, subqueries, QC checks).
+- `OPUS_BC.sql` — SQL queries used to extract and preprocess clinical data from the OPUS_BC database (TNBC patient material).
 
 **Dash_Volcano_PT (data & helper files)**
 This subfolder contains data and helper scripts for generating volcano plots using RNA-seq results, intended for interactive use or app deployment.
@@ -87,6 +82,18 @@ Each pair of .py and .ipynb files corresponds to a specific analysis and visuali
 - `Infiltration vs Cell Type_Necrosis_poster.*` — Infiltration score by primary tumor cell type and necrosis status.
 - `Infiltration vs Liver metastases_abscesses_poster.*` — Infiltration scores vs liver metastases and inflammation across groups.
 
+**Other Analyses**
+
+This section contains additional scripts and notebooks supporting various analyses related to tumor biology and treatment effects in mouse models. These analyses complement the main poster work by exploring immune infiltration patterns, gene expression changes, tumor growth dynamics, and survival outcomes, as well as providing database queries for clinical material from TNBC patients.
+
+- `Clustermap - 2 colourbars.*` — Heatmap/Clustermap for immune cell infiltration in tumours of Balb/c mice treated with Pyrvinium Pamoate.
+- `Clustermap_lipids_PT_no311.*` - Clustermap for lipid content (%mol) in primary tumours of Balb/c mice treated with Pyrvinium Pamoate (without mouse no. 311).
+- `Lipids_PT_no311.*` - Analysis of lipid levels in primary tumours (excluding mouse no. 311); includes box plots and statistical tests.
+- `SmartSeq cycle count comparison.*` — Scatter plot for qPCR Cq mean values in 4T1 and positive control samples.
+- `Survival Curve Serum_separate median.*` — Survival analysis of mice based on PUFA serum levels.
+- `Tumor Volume Changes Over Time.*` — Tumor volume dynamics in mice treated with Pyrvinium Pamoate (PP).
+- `Volcano_plot_4T1.*` — Volcano plot for differential gene expression in 4T1 cells treated with Pyrvinium Pamoate.
+  
 **Additional_projects**
 
 This section contains various Python projects, ranging from classic scripts and small games to machine learning and text analysis applications.
@@ -117,16 +124,20 @@ This section contains various Python projects, ranging from classic scripts and 
 | `Python/Additional_projects/ML` | Machine learning examples and models (e.g. wine classification task). |
 | `Python/Additional_projects/Text_analysis` | Text processing utilities with both CLI and GUI interface. |
 | `Python/Additional_projects` | Miscellaneous Python scripts, such as games or simulations. |
-| `SQL/` | SQL queries for TNBC patient data extraction from OPUS_BC database. |
+| `SQL/Clinical_Trial` | Complete PostgreSQL Clinical Trial database project: conceptual & logical models, physical schema (DDL), sample data, functions, triggers, views, roles & privileges, optional RLS, and analytical/QC queries. |
+| `SQL/OPUS_BC.sql` | SQL queries for TNBC patient data extraction from the OPUS_BC database. |
 | *(root)* | Shared files: `README.md`, `requirements.txt`, `.gitignore`, and structure snapshot `repo_structure.txt`. |
 
 ---
 ## 🛠️ Technologies
 
+**Core technologies used in this repository:**
 - Python 3.10+
 - JupyterLab
+- SQL (PostgreSQL; MySQL in selected environments)
 - Libraries: `pandas`, `seaborn`, `matplotlib`, `numpy`, `lifelines`, `scipy`
-- SQL (PostgreSQL / MySQL depending on the environment)
+
+**Additional tools & platforms (used in selected projects):**
 - Flutter — mobile app development framework (Dart)
 - Power BI — data visualization and business intelligence
 - Tableau — interactive dashboards and visual analytics
@@ -135,8 +146,8 @@ This section contains various Python projects, ranging from classic scripts and 
 
 ## 📌 Project Status
 
-The repository is actively being organized and updated. More scripts and documentation may be added over time.
-
+The repository is actively maintained and periodically updated.
+Individual projects may be considered complete, while documentation and structure continue to evolve.
 ---
 
 ## 📄 License
