@@ -34,8 +34,8 @@ Most of the files are related to projects carried out during my PhD. They relate
     │   └── OPUS_BC.sql
     │
     ├── .gitignore
-    ├── requirements.txt
-    └── README.md
+    ├── README.md 
+    └── requirements.txt
     
 ---
 
