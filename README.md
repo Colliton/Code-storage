@@ -15,7 +15,7 @@ Most of the files are related to projects carried out during my PhD. They relate
     ├── PowerBI&Tableau/
     │   ├── PowerBI/
     │       └── Employee Management Power BI Report.md
-    │   ├── Tableau/
+    │   └── Tableau/
     │       └── Movies Analysis Tableau Report.md
     │ 
     ├── Python/
@@ -26,7 +26,7 @@ Most of the files are related to projects carried out during my PhD. They relate
     │   ├── Poster_session 2025/
     │       ├── Raw_code/
     │       └── Jupyter_Notebook/
-    │   └──Raw_code/
+    │   └── Raw_code/
     │       └── Dash_Volcano_PT/
     │
     ├── SQL/
