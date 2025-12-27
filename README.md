@@ -1,8 +1,10 @@
 ## 🧬 Code-storage
 
-This folder contains **Python** code and an **SQL** file.
-Most of the files are related to projects carried out during my PhD. They relate to analyses associated with a mouse model of triple negative breast cancer (TNBC) and to a substance being tested as a potential drug: Pyrvinium Pamoate. 
-> This is only a marginal part of the biostatistical analyses and visualisations that have been carried out.
+This repository contains Python and SQL projects covering data analysis, visualization, and database design.
+
+A significant part of the Python code is related to projects carried out during my PhD, including analyses based on a mouse model of triple negative breast cancer (TNBC) and studies of Pyrvinium Pamoate as a potential therapeutic compound.
+
+In addition, the repository includes an independent SQL project (`SQL/Clinical_Trial`) presenting the design and implementation of a PostgreSQL clinical trial database, with a focus on schema design, data integrity, access control, and analytical querying.
 
 ---
 
