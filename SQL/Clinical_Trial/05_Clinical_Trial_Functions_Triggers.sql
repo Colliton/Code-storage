@@ -21,7 +21,7 @@ Testing:
 Function: set_updated_at
 Purpose: 
 - Automatically update updated_at column on row update.
-/*
+*/
 
 CREATE OR REPLACE FUNCTION clinical.set_updated_at()
 RETURNS TRIGGER
