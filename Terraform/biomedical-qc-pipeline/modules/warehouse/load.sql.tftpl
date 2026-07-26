@@ -1,0 +1,146 @@
+DECLARE run_ts TIMESTAMP DEFAULT CURRENT_TIMESTAMP();
+
+TRUNCATE TABLE `${project_id}.${curated_dataset}.validated_samples`;
+TRUNCATE TABLE `${project_id}.${curated_dataset}.rejected_samples`;
+TRUNCATE TABLE `${project_id}.${curated_dataset}.sample_qc_summary`;
+
+INSERT INTO `${project_id}.${curated_dataset}.validated_samples`
+(
+    sample_id,
+    batch_id,
+    sample_source,
+    analyte,
+    collection_timestamp,
+    processing_timestamp,
+    operator_id,
+    cell_count,
+    viability_percent,
+    qubit_assay_type,
+    qubit_concentration_ng_ul,
+    sample_volume_ul,
+    total_yield_ng,
+    rin_score,
+    storage_temperature,
+    qc_status,
+    source_file,
+    ingestion_timestamp,
+    validated_at
+)
+SELECT
+    sample_id,
+    batch_id,
+    sample_source,
+    analyte,
+    collection_timestamp,
+    processing_timestamp,
+    operator_id,
+    cell_count,
+    viability_percent,
+    qubit_assay_type,
+    qubit_concentration_ng_ul,
+    sample_volume_ul,
+    total_yield_ng,
+    rin_score,
+    storage_temperature,
+    qc_status,
+    source_file,
+    ingestion_timestamp,
+    run_ts AS validated_at
+FROM `${project_id}.${raw_dataset}.synthetic_samples_raw`
+WHERE qc_status = 'PASS';
+
+INSERT INTO `${project_id}.${curated_dataset}.rejected_samples`
+(
+    sample_id,
+    batch_id,
+    sample_source,
+    analyte,
+    collection_timestamp,
+    processing_timestamp,
+    operator_id,
+    cell_count,
+    viability_percent,
+    qubit_assay_type,
+    qubit_concentration_ng_ul,
+    sample_volume_ul,
+    total_yield_ng,
+    rin_score,
+    storage_temperature,
+    qc_status,
+    qc_failure_reason,
+    source_file,
+    ingestion_timestamp,
+    rejected_at
+)
+SELECT
+    sample_id,
+    batch_id,
+    sample_source,
+    analyte,
+    collection_timestamp,
+    processing_timestamp,
+    operator_id,
+    cell_count,
+    viability_percent,
+    qubit_assay_type,
+    qubit_concentration_ng_ul,
+    sample_volume_ul,
+    total_yield_ng,
+    rin_score,
+    storage_temperature,
+    qc_status,
+    COALESCE(qc_failure_reason, 'QC status marked as FAIL') AS qc_failure_reason,
+    source_file,
+    ingestion_timestamp,
+    run_ts AS rejected_at
+FROM `${project_id}.${raw_dataset}.synthetic_samples_raw`
+WHERE qc_status = 'FAIL';
+
+INSERT INTO `${project_id}.${curated_dataset}.sample_qc_summary`
+(
+    sample_source,
+    analyte,
+    total_records,
+    validated_count,
+    rejected_count,
+    pass_rate,
+    avg_total_yield_ng,
+    avg_rin_score,
+    generated_at
+)
+SELECT
+    sample_source,
+    analyte,
+    COUNT(*) AS total_records,
+    COUNTIF(qc_status = 'PASS') AS validated_count,
+    COUNTIF(qc_status = 'FAIL') AS rejected_count,
+    SAFE_DIVIDE(COUNTIF(qc_status = 'PASS'), COUNT(*)) AS pass_rate,
+    AVG(total_yield_ng) AS avg_total_yield_ng,
+    AVG(rin_score) AS avg_rin_score,
+    run_ts AS generated_at
+FROM `${project_id}.${raw_dataset}.synthetic_samples_raw`
+GROUP BY sample_source, analyte;
+
+INSERT INTO `${project_id}.${curated_dataset}.pipeline_audit`
+(
+    run_id,
+    run_ts,
+    processed_records,
+    validated_records,
+    rejected_records,
+    status,
+    notes
+)
+SELECT
+    GENERATE_UUID() AS run_id,
+    run_ts AS run_ts,
+    COUNT(*) AS processed_records,
+    COUNTIF(qc_status = 'PASS') AS validated_records,
+    COUNTIF(qc_status = 'FAIL') AS rejected_records,
+    CASE
+        WHEN COUNTIF(qc_status = 'FAIL') = 0 THEN 'SUCCES'
+        WHEN COUNTIF(qc_status = 'PASS') = 0 THEN 'FAILED'
+        ELSE 'PARTIAL_SUCCESS'
+    END AS status,
+    'Synthetic sample QC load' AS notes
+FROM `${project_id}.${raw_dataset}.synthetic_samples_raw`;

@@ -1,0 +1,56 @@
+[
+  {
+    "name": "sample_source",
+    "type": "STRING",
+    "mode": "REQUIRED",
+    "description": "Biological source of the sample"
+  },
+  {
+    "name": "analyte",
+    "type": "STRING",
+    "mode": "REQUIRED",
+    "description": "Target analyte measured for the sample"
+  },
+  {
+    "name": "total_records",
+    "type": "INT64",
+    "mode": "REQUIRED",
+    "description": "Total number of records in the summary group"
+  },
+  {
+    "name": "validated_count",
+    "type": "INT64",
+    "mode": "REQUIRED",
+    "description": "Number of validated records in the summary group"
+  },
+  {
+    "name": "rejected_count",
+    "type": "INT64",
+    "mode": "REQUIRED",
+    "description": "Number of rejected records in the summary group"
+  },
+  {
+    "name": "pass_rate",
+    "type": "FLOAT64",
+    "mode": "REQUIRED",
+    "description": "Validation pass rate for the summary group"
+  },
+  {
+    "name": "avg_total_yield_ng",
+    "type": "FLOAT64",
+    "mode": "NULLABLE",
+    "description": "Average total analyte yield in ng"
+  },
+  {
+    "name": "avg_rin_score",
+    "type": "FLOAT64",
+    "mode": "NULLABLE",
+    "description": "Average RNA Integrity Number (RIN) score"
+  },
+  {
+    "name": "generated_at",
+    "type": "TIMESTAMP",
+    "mode": "REQUIRED",
+    "description": "Timestamp when the summary record was generated"
+  }
+]

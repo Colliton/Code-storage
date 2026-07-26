@@ -1,0 +1,44 @@
+[
+  {
+    "name": "run_id",
+    "type": "STRING",
+    "mode": "REQUIRED",
+    "description": "Unique identifier of the pipeline execution"
+  },
+  {
+    "name": "run_ts",
+    "type": "TIMESTAMP",
+    "mode": "REQUIRED",
+    "description": "Timestamp when the pipeline execution started"
+  },
+  {
+    "name": "processed_records",
+    "type": "INT64",
+    "mode": "REQUIRED",
+    "description": "Total number of records processed in the execution"
+  },
+  {
+    "name": "validated_records",
+    "type": "INT64",
+    "mode": "REQUIRED",
+    "description": "Number of records validated in the execution"
+  },
+  {
+    "name": "rejected_records",
+    "type": "INT64",
+    "mode": "REQUIRED",
+    "description": "Number of records rejected in the execution"
+  },
+  {
+    "name": "status",
+    "type": "STRING",
+    "mode": "REQUIRED",
+    "description": "Overall status of the pipeline execution"
+  },
+  {
+    "name": "notes",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "Additional notes about the pipeline execution"
+  }
+]

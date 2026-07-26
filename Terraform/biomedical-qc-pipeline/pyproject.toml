@@ -1,0 +1,8 @@
+[tool.ruff]
+line-length = 88
+target-version = "py314"
+
+[tool.pytest.ini_options]
+testpaths = ["modules/generator/function/tests"]
+pythonpath = ["modules/generator/function"]
+addopts = "-q"

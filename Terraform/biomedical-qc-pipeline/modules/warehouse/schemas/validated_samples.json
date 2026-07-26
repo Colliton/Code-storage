@@ -1,0 +1,116 @@
+[
+  {
+    "name": "sample_id",
+    "type": "STRING",
+    "mode": "REQUIRED",
+    "description": "Unique identifier for the sample"
+  },
+  {
+    "name": "batch_id",
+    "type": "STRING",
+    "mode": "REQUIRED",
+    "description": "Identifier of the processing batch"
+  },
+  {
+    "name": "sample_source",
+    "type": "STRING",
+    "mode": "REQUIRED",
+    "description": "Biological source of the sample"
+  },
+  {
+    "name": "analyte",
+    "type": "STRING",
+    "mode": "REQUIRED",
+    "description": "Target analyte measured for the sample"
+  },
+  {
+    "name": "collection_timestamp",
+    "type": "TIMESTAMP",
+    "mode": "NULLABLE",
+    "description": "Timestamp when the sample was collected"
+  },
+  {
+    "name": "processing_timestamp",
+    "type": "TIMESTAMP",
+    "mode": "NULLABLE",
+    "description": "Timestamp when the sample was processed"
+  },
+  {
+    "name": "operator_id",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "Identifier of the operator who processed the sample"
+  },
+  {
+    "name": "cell_count",
+    "type": "INT64",
+    "mode": "NULLABLE",
+    "description": "Measured cell count for the sample"
+  },
+  {
+    "name": "viability_percent",
+    "type": "FLOAT64",
+    "mode": "NULLABLE",
+    "description": "Cell viability percentage for the sample"
+  },
+  {
+    "name": "qubit_assay_type",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "Qubit assay type used for the measurement"
+  },
+  {
+    "name": "qubit_concentration_ng_ul",
+    "type": "FLOAT64",
+    "mode": "NULLABLE",
+    "description": "Qubit-measured concentration in ng/µL"
+  },
+  {
+    "name": "sample_volume_ul",
+    "type": "FLOAT64",
+    "mode": "NULLABLE",
+    "description": "Sample volume in µL"
+  },
+  {
+    "name": "total_yield_ng",
+    "type": "FLOAT64",
+    "mode": "NULLABLE",
+    "description": "Total analyte yield in ng"
+  },
+  {
+    "name": "rin_score",
+    "type": "FLOAT64",
+    "mode": "NULLABLE",
+    "description": "RNA Integrity Number (RIN) score"
+  },
+  {
+    "name": "storage_temperature",
+    "type": "FLOAT64",
+    "mode": "NULLABLE",
+    "description": "Storage temperature in °C"
+  },
+  {
+    "name": "qc_status",
+    "type": "STRING",
+    "mode": "REQUIRED",
+    "description": "Quality control outcome for the sample"
+  },
+  {
+    "name": "source_file",
+    "type": "STRING",
+    "mode": "REQUIRED",
+    "description": "Path of the source file containing the record"
+  },
+  {
+    "name": "ingestion_timestamp",
+    "type": "TIMESTAMP",
+    "mode": "REQUIRED",
+    "description": "Timestamp when the record was ingested"
+  },
+  {
+    "name": "validated_at",
+    "type": "TIMESTAMP",
+    "mode": "REQUIRED",
+    "description": "Timestamp when the record was successfully validated"
+  }
+]

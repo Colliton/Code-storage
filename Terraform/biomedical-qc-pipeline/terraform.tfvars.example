@@ -1,0 +1,7 @@
+project_id = "your-project-id"
+billing_account_id = "XXXXXX-XXXXXX-XXXXXX"
+region     = "europe-central2"
+prefix     = "demo"
+object_prefix = "samples"
+schedule   = "0 */6 * * *"
+time_zone  = "Europe/Warsaw"
