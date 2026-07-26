@@ -4,6 +4,7 @@ resource "google_workflows_workflow" "pipeline" {
   name            = "${var.prefix}-pipeline-workflow"
   description     = "Workflow scaffold for biomedical pipeline orchestration"
   service_account = var.service_account_email
+  deletion_protection = false
 
   source_contents = <<-EOF
     main:

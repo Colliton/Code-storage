@@ -36,6 +36,7 @@ resource "google_project" "pipeline" {
   name            = var.project_id
   project_id      = var.project_id
   billing_account = var.billing_account_id
+  deletion_policy = "DELETE"
 }
 
 resource "google_project_service" "required_apis" {
