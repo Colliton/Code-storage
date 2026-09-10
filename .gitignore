@@ -17,5 +17,9 @@ Thumbs.db
 *.log
 *.tmp
 
+# Local quiz state
+progress.json
+wrong_questions.json
+
 # Jupyter metadata
 *.nbconvert.ipynb
