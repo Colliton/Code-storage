@@ -23,6 +23,7 @@ BASE_DIR       = Path(__file__).parent
 QUESTIONS_FILE = BASE_DIR / "questions.json"
 PROGRESS_FILE  = BASE_DIR / "progress.json"
 WRONG_FILE     = BASE_DIR / "wrong_questions.json"
+SESSION_FILE   = BASE_DIR / "quiz_session.json"
 
 SCRAPED_DEFAULTS = [
     BASE_DIR / "examtopics_ace_saved_links_full.json",
@@ -35,7 +36,9 @@ SCRAPED_DEFAULTS = [
 THEMES = {
     "light": {
         "BG": "#fffacc", "BG2": "#ffffff", "BG3": "#edafb8",
-        "ACCENT": "#70a0af", "GREEN": "#2e7d32", "RED": "#c62828",
+        "ACCENT": "#70a0af", "PROGRESS_START": "#4f91a4",
+        "PROGRESS_END": "#c75c81",
+        "GREEN": "#2e7d32", "RED": "#c62828",
         "YELLOW": "#7a6174", "TEXT": "#111111", "TEXT_DIM": "#7a6174",
         "WHITE": "#ffffff", "ANSWER_GREEN_BG": "#ddf2e1",
         "ANSWER_RED_BG": "#fde2e7", "ACTIVE": "#d8c6d2",
@@ -43,7 +46,9 @@ THEMES = {
     },
     "dark": {
         "BG": "#1f2228", "BG2": "#2d3138", "BG3": "#464b55",
-        "ACCENT": "#ffd21c", "GREEN": "#a6e3a1", "RED": "#f38ba8",
+        "ACCENT": "#ffd21c", "PROGRESS_START": "#ffd21c",
+        "PROGRESS_END": "#a6e3a1",
+        "GREEN": "#a6e3a1", "RED": "#f38ba8",
         "YELLOW": "#ffe36e", "TEXT": "#f7f8fa", "TEXT_DIM": "#b9c0ca",
         "WHITE": "#ffffff", "ANSWER_GREEN_BG": "#28513d",
         "ANSWER_RED_BG": "#5a3041", "ACTIVE": "#626873",
@@ -51,7 +56,8 @@ THEMES = {
     },
 }
 
-BG = BG2 = BG3 = ACCENT = GREEN = RED = YELLOW = TEXT = TEXT_DIM = WHITE = ""
+BG = BG2 = BG3 = ACCENT = PROGRESS_START = PROGRESS_END = ""
+GREEN = RED = YELLOW = TEXT = TEXT_DIM = WHITE = ""
 ANSWER_GREEN_BG = ANSWER_RED_BG = ACTIVE = POKEMON_BG = ""
 
 
@@ -114,19 +120,29 @@ def _normalize_selected_answers(values: list[str] | None) -> list[str]:
     return result
 
 
-def _discussion_entry_text(item: dict) -> str:
-    text = str(item.get("text", "")).strip()
+def _discussion_entry_text(item: dict | str) -> str:
+    text = item.strip() if isinstance(item, str) else str(item.get("text", "")).strip()
     if not text:
         return ""
+    if isinstance(item, str):
+        return text
     selected_answers = _normalize_selected_answers(item.get("selected_answers"))
     selected_label = ",".join(selected_answers) if selected_answers else "-"
     return f"[SA: {selected_label}] {text}"
 
 
-def _normalize_discussion_item(item: dict) -> dict | None:
-    text = str(item.get("text", "")).strip()
+def _normalize_discussion_item(item: dict | str) -> dict | None:
+    text = item.strip() if isinstance(item, str) else str(item.get("text", "")).strip()
     if not text:
         return None
+    if isinstance(item, str):
+        return {
+            "author": None,
+            "date": None,
+            "upvotes": None,
+            "selected_answers": [],
+            "text": text,
+        }
     return {
         "author": str(item.get("author") or "").strip() or None,
         "date": str(item.get("date") or "").strip() or None,
@@ -200,6 +216,8 @@ def _normalize_question(row: dict, fallback_index: int) -> dict:
 
     return {
         "id": str(qnum),
+        "query": row.get("query"),
+        "question_title": row.get("question_title"),
         "question": row.get("question_text") or row.get("question_title") or f"Question {qnum}",
         "options": row.get("options") or [],
         "correct": correct,
@@ -213,6 +231,9 @@ def _normalize_question(row: dict, fallback_index: int) -> dict:
         "discussion": discussion,
         "explanation": explanation,
         "question_added_date": row.get("question_added_date"),
+        "question_source": row.get("question_source"),
+        "official_sample_index": row.get("official_sample_index"),
+        "official_sample_total": row.get("official_sample_total"),
     }
 
 
@@ -260,12 +281,16 @@ class QuizApp:
 
         self.all_questions: list[dict] = _load_questions()
         self.progress: dict = self._load_progress()
+        self.saved_session: dict = self._load_session()
+        self.completed_question_ids: set[str] = set()
+        self._progress_ratio = 0.0
 
         # Rozmiar czcionki
         self.font_size = max(BASE_SIZE, min(18, round(window_width / 110)))
 
         # Tryb: "all" lub "wrong"
         self.mode = "all"
+        self.shuffle = False
         self.queue: list[int] = []   # indeksy do all_questions
         self.pos   = 0               # pozycja w queue
 
@@ -278,7 +303,7 @@ class QuizApp:
         self.theme_name = "light"
 
         self._build_ui()
-        self._start_mode("all")
+        self._restore_session()
 
     # ── PERSIST ──────────────────────────────────────────────────────────────
     def _load_progress(self) -> dict:
@@ -295,8 +320,149 @@ class QuizApp:
         )
         self._export_wrong()
 
+    def _load_session(self) -> dict:
+        if not SESSION_FILE.exists():
+            return {}
+        try:
+            session = json.loads(SESSION_FILE.read_text("utf-8"))
+        except json.JSONDecodeError as error:
+            messagebox.showwarning(
+                "Nie udało się odczytać sesji",
+                f"Plik zapisu sesji jest nieprawidłowy:\n{error}",
+                parent=self.root,
+            )
+            return {}
+        if not isinstance(session, dict):
+            messagebox.showwarning(
+                "Nie udało się odczytać sesji",
+                "Plik zapisu sesji ma nieprawidłowy format. Rozpoczynam nową sesję.",
+                parent=self.root,
+            )
+            return {}
+        return session
+
+    def _save_session(self):
+        if not self.queue:
+            return
+        current_question_id = (
+            self._current_q()["id"] if 0 <= self.pos < len(self.queue) else None
+        )
+        session = {
+            "version": 1,
+            "mode": self.mode,
+            "shuffle": self.shuffle,
+            "queue": [self.all_questions[index]["id"] for index in self.queue],
+            "current_question_id": current_question_id,
+            "completed_question_ids": [
+                q["id"] for q in self.all_questions
+                if q["id"] in self.completed_question_ids
+            ],
+        }
+        temporary_file = SESSION_FILE.with_name(f"{SESSION_FILE.name}.tmp")
+        temporary_file.write_text(
+            json.dumps(session, ensure_ascii=False, indent=2), "utf-8"
+        )
+        temporary_file.replace(SESSION_FILE)
+
+    def _restore_session(self):
+        valid_ids = {q["id"] for q in self.all_questions}
+        saved_completed = self.saved_session.get("completed_question_ids", [])
+        if isinstance(saved_completed, list):
+            self.completed_question_ids = {
+                str(qid) for qid in saved_completed if str(qid) in valid_ids
+            }
+        elif "completed_question_ids" in self.saved_session:
+            messagebox.showwarning(
+                "Niepełny zapis sesji",
+                "Nie udało się odczytać listy zrobionych pytań. "
+                "Postęp sesji rozpocznie się od zera.",
+                parent=self.root,
+            )
+
+        mode = self.saved_session.get("mode")
+        saved_queue = self.saved_session.get("queue")
+        if (
+            not isinstance(mode, str)
+            or mode not in {"all", "wrong"}
+            or not isinstance(saved_queue, list)
+        ):
+            if self.saved_session:
+                messagebox.showwarning(
+                    "Niepełny zapis sesji",
+                    "Nie udało się odtworzyć kolejki pytań. "
+                    "Sesja rozpocznie się od początku.",
+                    parent=self.root,
+                )
+            self._start_mode("all")
+            return
+
+        question_indices = {q["id"]: i for i, q in enumerate(self.all_questions)}
+        shuffle = self.saved_session.get("shuffle")
+        if not isinstance(shuffle, bool):
+            saved_indices = [
+                question_indices[str(saved_id)]
+                for saved_id in saved_queue
+                if str(saved_id) in question_indices
+            ]
+            descents = sum(
+                1 for previous, current in zip(saved_indices, saved_indices[1:])
+                if current < previous
+            )
+            shuffle = descents > max(1, len(saved_indices) // 100)
+
+        queue: list[int] = []
+        seen_ids: set[str] = set()
+        for saved_id in saved_queue:
+            qid = str(saved_id)
+            index = question_indices.get(qid)
+            if index is None or qid in seen_ids:
+                continue
+            if mode == "wrong" and not self._get_state(qid).get("wrong"):
+                continue
+            queue.append(index)
+            seen_ids.add(qid)
+
+        if mode == "all":
+            if shuffle:
+                queue.extend(
+                    i for i, q in enumerate(self.all_questions)
+                    if q["id"] not in seen_ids
+                )
+                sample_queue = [
+                    i for i in queue
+                    if self._is_official_sample(self.all_questions[i])
+                ]
+                queue = [
+                    i for i in queue
+                    if not self._is_official_sample(self.all_questions[i])
+                ]
+                queue.extend(sample_queue)
+            else:
+                queue = list(range(len(self.all_questions)))
+        else:
+            queue.extend(
+                i for i, q in enumerate(self.all_questions)
+                if q["id"] not in seen_ids and self._get_state(q["id"]).get("wrong")
+            )
+
+        if not queue:
+            self._start_mode("all")
+            return
+
+        self.mode = mode
+        self.shuffle = shuffle if mode == "all" else False
+        self.queue = queue
+        current_id = str(self.saved_session.get("current_question_id", ""))
+        self.pos = next(
+            (i for i, index in enumerate(queue)
+             if self.all_questions[index]["id"] == current_id),
+            0,
+        )
+        self._load_question()
+
     def _render_flags(self, q: dict, st: dict):
         has_wrong = st.get("wrong", False)
+        has_completed = q["id"] in self.completed_question_ids
         has_note  = bool(st.get("note", "").strip())
         added_date = q.get("question_added_date")
         has_answer_key = bool(q.get("correct"))
@@ -304,6 +470,8 @@ class QuizApp:
         parts: list[str] = []
         if has_wrong:
             parts.append("❌ błędne")
+        if has_completed:
+            parts.append("✅ zrobione")
         if has_note:
             parts.append("📝 notatka")
         if not has_answer_key:
@@ -313,7 +481,7 @@ class QuizApp:
 
         self.lbl_flags.config(
             text="  ".join(parts),
-            fg=RED if has_wrong else TEXT_DIM,
+            fg=RED if has_wrong else GREEN if has_completed else TEXT_DIM,
         )
 
     def _build_explanation_text(self, q: dict) -> str:
@@ -351,6 +519,7 @@ class QuizApp:
     # ── TRYB ─────────────────────────────────────────────────────────────────
     def _start_mode(self, mode: str, shuffle: bool = False):
         self.mode = mode
+        self.shuffle = shuffle if mode == "all" else False
         if mode == "wrong":
             self.queue = [
                 i for i, q in enumerate(self.all_questions)
@@ -364,7 +533,16 @@ class QuizApp:
             self.queue = list(range(len(self.all_questions)))
 
         if shuffle:
+            sample_queue = [
+                index for index in self.queue
+                if self._is_official_sample(self.all_questions[index])
+            ]
+            self.queue = [
+                index for index in self.queue
+                if not self._is_official_sample(self.all_questions[index])
+            ]
             random.shuffle(self.queue)
+            self.queue.extend(sample_queue)
 
         self.pos = 0
         self._load_question()
@@ -373,8 +551,86 @@ class QuizApp:
     def _current_idx(self) -> int:
         return self.queue[self.pos]
 
+    def _draw_progress_bar(self, _event=None):
+        if _event is None:
+            width = self.progress_bar.winfo_width()
+            height = self.progress_bar.winfo_height()
+        else:
+            width = _event.width
+            height = _event.height
+        if width <= 1 or height <= 1:
+            return
+
+        self.progress_bar.delete("all")
+        self.progress_bar.create_rectangle(
+            0, 0, width, height, fill=BG3, outline=""
+        )
+        fill_width = int(width * self._progress_ratio)
+        if fill_width <= 0:
+            return
+
+        start = tuple(int(PROGRESS_START[i:i + 2], 16) for i in (1, 3, 5))
+        end = tuple(int(PROGRESS_END[i:i + 2], 16) for i in (1, 3, 5))
+        steps = min(fill_width, 256)
+        for step in range(steps):
+            ratio = step / max(steps - 1, 1)
+            color = "#" + "".join(
+                f"{round(first + (last - first) * ratio):02x}"
+                for first, last in zip(start, end)
+            )
+            x0 = step * fill_width / steps
+            x1 = (step + 1) * fill_width / steps
+            self.progress_bar.create_rectangle(
+                x0, 0, x1, height, fill=color, outline=""
+            )
+
+    def _update_progress_bar(self):
+        real_total = self._real_question_count()
+        completed = sum(
+            1 for index in self.queue
+            if self._is_main_question(self.all_questions[index])
+            and self.all_questions[index]["id"] in self.completed_question_ids
+        )
+        self._progress_ratio = completed / real_total if real_total else 0.0
+        self._draw_progress_bar()
+
     def _current_q(self) -> dict:
         return self.all_questions[self._current_idx()]
+
+    @staticmethod
+    def _is_checkpoint(q: dict) -> bool:
+        return q.get("query") == "motivational-insert"
+
+    @staticmethod
+    def _is_official_sample(q: dict) -> bool:
+        return q.get("question_source") == "Google Official Sample"
+
+    def _is_main_question(self, q: dict) -> bool:
+        return not self._is_checkpoint(q) and not self._is_official_sample(q)
+
+    def _real_question_count(self) -> int:
+        return sum(
+            1 for index in self.queue
+            if self._is_main_question(self.all_questions[index])
+        )
+
+    def _real_question_position(self) -> int:
+        return sum(
+            1 for index in self.queue[: self.pos + 1]
+            if self._is_main_question(self.all_questions[index])
+        )
+
+    def _queue_position_for_question_number(self, question_number: int) -> int | None:
+        if question_number < 1:
+            return None
+        real_question_number = 0
+        for position, index in enumerate(self.queue):
+            if not self._is_main_question(self.all_questions[index]):
+                continue
+            real_question_number += 1
+            if real_question_number == question_number:
+                return position
+        return None
 
     def _go_to_pos(self, pos: int):
         if 0 <= pos < len(self.queue):
@@ -388,14 +644,19 @@ class QuizApp:
         self._go_to_pos(self.pos + 1)
 
     def _jump(self):
+        real_total = self._real_question_count()
+        if not real_total:
+            return
         val = simpledialog.askinteger(
             "Przejdź do pytania",
-            f"Podaj numer (1 – {len(self.queue)}):",
-            minvalue=1, maxvalue=len(self.queue),
+            f"Podaj numer pytania w bieżącej kolejności (1 – {real_total}):",
+            minvalue=1, maxvalue=real_total,
             parent=self.root,
         )
         if val is not None:
-            self._go_to_pos(val - 1)
+            queue_position = self._queue_position_for_question_number(val)
+            if queue_position is not None:
+                self._go_to_pos(queue_position)
 
     # ── WCZYTANIE PYTANIA ────────────────────────────────────────────────────
     def _load_question(self):
@@ -408,12 +669,27 @@ class QuizApp:
 
         # Nagłówek / postęp
         total = len(self.queue)
-        self.lbl_progress.config(
-            text=f"{'❌ TRYB: BŁĘDNE  ' if self.mode=='wrong' else ''}"
-                 f"Pytanie {self.pos + 1} / {total}"
-        )
+        real_total = self._real_question_count()
+        real_position = self._real_question_position()
+        mode_prefix = "❌ TRYB: BŁĘDNE  " if self.mode == "wrong" else ""
+        if self._is_checkpoint(q):
+            title = str(q.get("question_title") or "Checkpoint")
+            if "META" in title.upper():
+                progress_text = f"{mode_prefix}Koniec • {real_total} pytań"
+            else:
+                progress_text = f"{mode_prefix}Checkpoint • po {real_position} pytaniach"
+        elif self._is_official_sample(q):
+            sample_position = q.get("official_sample_index", 1)
+            sample_total = q.get("official_sample_total", 20)
+            progress_text = (
+                f"{mode_prefix}OFFICIAL GOOGLE SAMPLE • "
+                f"{sample_position} / {sample_total}"
+            )
+        else:
+            progress_text = f"{mode_prefix}Pytanie {real_position} / {real_total}"
+        self.lbl_progress.config(text=progress_text)
 
-        # Wskaźniki błędne/notatka/data
+        # Wskaźniki wykonania/błędne/notatka/data
         self._render_flags(q, st)
 
         # Treść pytania
@@ -462,8 +738,7 @@ class QuizApp:
         self.txt_note.insert("1.0", st.get("note", ""))
 
         # Pasek postępu
-        self.progress_bar["maximum"] = total
-        self.progress_bar["value"]   = self.pos + 1
+        self._update_progress_bar()
 
         # Przyciski nav
         self.btn_prev.config(state="normal" if self.pos > 0 else "disabled")
@@ -472,6 +747,7 @@ class QuizApp:
         # Statystyki
         self._update_stats()
         self._apply_font_size()
+        self._save_session()
 
     # ── SPRAWDZANIE ──────────────────────────────────────────────────────────
     def _check(self):
@@ -514,12 +790,16 @@ class QuizApp:
         self.txt_expl.insert("1.0", expl or "Brak wyjaśnienia dla tego pytania.")
         self.txt_expl.config(state="disabled")
 
-        # Auto-oznacz jako błędne jeśli zła odpowiedź
-        if has_answer_key and not is_correct:
-            self._get_state(q["id"])["wrong"] = True
-            self._save_progress()
+        if not self._is_checkpoint(q):
+            self.completed_question_ids.add(q["id"])
+            if has_answer_key and not is_correct:
+                self._get_state(q["id"])["wrong"] = True
             self._render_flags(q, self._get_state(q["id"]))
             self._update_stats()
+            self._update_progress_bar()
+            self._save_session()
+            if has_answer_key and not is_correct:
+                self._save_progress()
 
     # ── OZNACZANIE BŁĘDÓW ────────────────────────────────────────────────────
     def _toggle_wrong(self):
@@ -794,10 +1074,7 @@ class QuizApp:
         self.lbl_flags.config(bg=BG, fg=RED)
         self.lbl_stats.config(bg=BG, fg=TEXT_DIM)
         self.lbl_font_size.config(bg=BG, fg=TEXT_DIM)
-        ttk.Style().configure(
-            "TProgressbar", troughcolor=BG3, background=ACCENT,
-            bordercolor=BG, lightcolor=ACCENT, darkcolor=ACCENT,
-        )
+        self.progress_bar.config(bg=BG3)
         self.btn_theme.config(text="☀" if self.theme_name == "dark" else "☾")
         self._update_pokemon_image()
         self._load_question()
@@ -834,11 +1111,16 @@ class QuizApp:
 
     # ── STATYSTYKI ───────────────────────────────────────────────────────────
     def _update_stats(self):
-        total  = len(self.all_questions)
-        wrong  = sum(1 for q in self.all_questions if self._get_state(q["id"]).get("wrong"))
-        notes  = sum(1 for q in self.all_questions if self._get_state(q["id"]).get("note","").strip())
+        main_questions = [q for q in self.all_questions if self._is_main_question(q)]
+        total = len(main_questions)
+        completed = sum(
+            1 for q in main_questions
+            if q["id"] in self.completed_question_ids
+        )
+        wrong  = sum(1 for q in main_questions if self._get_state(q["id"]).get("wrong"))
+        notes  = sum(1 for q in main_questions if self._get_state(q["id"]).get("note","").strip())
         self.lbl_stats.config(
-            text=f"Wszystkich: {total}  |  Błędnych: {wrong}  |  Notatek: {notes}"
+            text=f"Zrobione: {completed}/{total}  |  Błędnych: {wrong}  |  Notatek: {notes}"
         )
 
     # ── UI ───────────────────────────────────────────────────────────────────
@@ -891,12 +1173,11 @@ class QuizApp:
         self.btn_theme.pack(side="left", padx=(4, 0))
 
         # ── PASEK POSTĘPU ────────────────────────────────────────────────────
-        style = ttk.Style()
-        style.theme_use("clam")
-        style.configure("TProgressbar", troughcolor=BG3, background=ACCENT,
-                        bordercolor=BG, lightcolor=ACCENT, darkcolor=ACCENT)
-        self.progress_bar = ttk.Progressbar(main, style="TProgressbar", length=100)
+        self.progress_bar = tk.Canvas(
+            main, height=14, bg=BG3, highlightthickness=0, bd=0
+        )
         self.progress_bar.grid(row=1, column=0, sticky="ew", pady=(0, 8))
+        self.progress_bar.bind("<Configure>", self._draw_progress_bar)
 
         # ── ŚRODEK: pytanie + opcje + wyjaśnienie ────────────────────────────
         mid = tk.Frame(main, bg=BG)
@@ -1067,6 +1348,7 @@ class QuizApp:
             self._save_note()
             self._save_progress()
             self._export_wrong()
+            self._save_session()
             self.root.destroy()
 
         self.root.protocol("WM_DELETE_WINDOW", _on_close)
